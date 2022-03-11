@@ -35,9 +35,110 @@ JavaScript中的任务有两种，一种是同步任务，另一种是异步任�
 ### 任务
 任务分为两种，一种叫做宏任务（MacroTask），另一种叫做微任务（MicroTask），首先他们都是**异步队列**中的任务，那它们之间是什么关系呢？简单说来就是微任务是VIP优先执行，全部微任务执行完之后才轮到普通用户宏任务执行，而且执行完一个后马上要看有没有新的微任务执行，有的话宏任务还得等着，就这样往复，看着像不像是在银行等着排队办业务的你（其实是我）。
 ![JavaScript的执行流程](https://pic3.zhimg.com/80/v2-eba59eaab15f8a27c1b58f69513f0c0e_1440w.jpg)
+![宏任务与微任务](https://upload-images.jianshu.io/upload_images/18747821-d613fb9d7e538069.png)
 那么哪些是宏任务，哪些是微任务呢？看下表吧。
 
 |宏任务|微任务|
 |-|-|
 | setTimeout、setInterval、js主代码、setImmediate(Node)、requestAnimationFrame(浏览器)|process.nextTick、Promise的then方法|
 
+### 举个例子
+``` js
+console.log('1');
+
+setTimeout(function() {
+    console.log('2');
+    process.nextTick(function() {
+        console.log('3');
+    })
+    new Promise(function(resolve) {
+        console.log('4');
+        resolve();
+    }).then(function() {
+        console.log('5')
+    })
+})
+process.nextTick(function() {
+    console.log('6');
+})
+new Promise(function(resolve) {
+    console.log('7');
+    resolve();
+}).then(function() {
+    console.log('8')
+})
+
+setTimeout(function() {
+    console.log('9');
+    process.nextTick(function() {
+        console.log('10');
+    })
+    new Promise(function(resolve) {
+        console.log('11');
+        resolve();
+    }).then(function() {
+        console.log('12')
+    })
+})
+```
+
+这里的执行顺序应该是怎样的呢？
+
+1. script start
+2. async2 end
+3. Promise
+4. script end
+5. async1 end
+6. promise1
+7. promise2
+8. setTimeout
+
+#### 分析一下
+JS 运行机制为**从上而下**，
+##### 第一轮循环：
+1）、首先打印 1
+2）、接下来是setTimeout是异步任务且是宏任务，加入宏任务暂且记为 setTimeout1
+3）、接下来是 process 微任务 加入微任务队列 记为 process1
+4）、接下来是 new Promise 里面直接 resolve(7) 所以打印 7 后面的then是微任务 记为 then1
+5）、setTimeout 宏任务 记为 setTimeout2
+
+> 第一轮循环打印出的是 1 7
+> 当前宏任务队列：setTimeout1, setTimeout2
+> 当前微任务队列：process1, then1,
+
+##### 第二轮循环：
+1）、执行所有微任务
+2）、执行process1，打印出 6
+3）、执行then1 打印出8
+4）、微任务都执行结束了，开始执行第一个宏任务
+5）、执行 setTimeout1 也就是 第 3 - 14 行
+6）、首先打印出 2
+7）、遇到 process 微任务 记为 process2
+8）、new Promise中resolve 打印出 4
+9）、then 微任务 记为 then2
+
+> 第二轮循环结束，当前打印出来的是 1 7 6 8 2 4
+> 当前宏任务队列：setTimeout2
+> 当前微任务队列：process2, then2
+##### 第三轮循环：
+1）、执行所有的微任务
+2）、执行 process2 打印出 3
+3）、执行 then2 打印出 5
+4）、执行第一个宏任务，也就是执行 setTimeout2 对应代码中的 25 - 36 行
+5）、首先打印出 9
+6）、process 微任务 记为 process3
+7）、new Promise执行resolve 打印出 11
+8）、then 微任务 记为 then3
+
+> 第三轮循环结束，当前打印顺序为：1 7 6 8 2 4 3 5 9 11
+> 当前宏任务队列为空
+> 当前微任务队列：process3，then3
+###### 第四轮循环：
+1）、执行所有的微任务
+2）、执行process3 打印出 10
+3）、执行then3 打印出 12
+
+代码执行结束：
+最终打印顺序为：1 7 6 8 2 4 3 5 9 11 10 12
+
+## Node环境的循环机制
