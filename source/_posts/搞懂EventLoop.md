@@ -17,7 +17,6 @@ EventLoop 翻译过来就是事件循环，那啥是事件循环啊，这个要�
 
 但是虽然都是JavaScript，都是事件循环，都有异步特性，但浏览器环境和Node环境的实现方式是不一样的，这里要先说明一下。
 浏览器的事件循环是HTML定义的规范，而Node环境是利用libuv库实现的，这里我们先从浏览器的事件循环开始说。
-<!-- more -->
 ## 浏览器的事件循环
 首先我们要知道，浏览器的事件循环是有这么两个部分构成，一个叫做主线程（main thread），另一个叫做调用栈（call-stack），所有的任务（Task）都会被放到调用栈里，等待主线程调用，这个怎么理解呢，打个比方，主线程就像是物流配送中的传送带，如果没有快递往上放的时候，它是空的，当有快递包裹放上去的时候，它就开始运行，而你购买的产品要放倒包裹里，然后包裹在放到传送带上，最终被送到你家里，这里的传送带就是主线程，包裹就是调用栈，而购买的产品就是任务，不知道这样解释是否能好理解一些。
 
@@ -142,3 +141,10 @@ JS 运行机制为**从上而下**，
 最终打印顺序为：1 7 6 8 2 4 3 5 9 11 10 12
 
 ## Node环境的循环机制
+Node的Event loop一共分为6个阶段，每个细节具体如下：
+timers: 执行setTimeout和setInterval中到期的callback。
+pending callback: 上一轮循环中少数的callback会放在这一阶段执行。
+idle, prepare: 仅在内部使用。
+poll: 最重要的阶段，执行pending callback，在适当的情况下回阻塞在这个阶段。
+check: 执行setImmediate(setImmediate()是将事件插入到事件队列尾部，主线程和事件队列的函数执行完成之后立即执行setImmediate指定的回调函数)的callback。
+close callbacks: 执行close事件的callback，例如socket.on('close'[,fn])或者http.server.on('close, fn)。
