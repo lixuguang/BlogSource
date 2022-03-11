@@ -81,19 +81,8 @@ setTimeout(function() {
 })
 ```
 
-这里的执行顺序应该是怎样的呢？
-
-1. script start
-2. async2 end
-3. Promise
-4. script end
-5. async1 end
-6. promise1
-7. promise2
-8. setTimeout
-
 #### 分析一下
-JS 运行机制为**从上而下**，
+JS 运行机制为**从上而下**，那么这里的执行顺序应该是什么样的呢？
 ##### 第一轮循环：
 1）、首先打印 1
 2）、接下来是setTimeout是异步任务且是宏任务，加入宏任务暂且记为 setTimeout1
@@ -142,9 +131,9 @@ JS 运行机制为**从上而下**，
 
 ## Node环境的循环机制
 Node的Event loop一共分为6个阶段，每个细节具体如下：
-timers: 执行setTimeout和setInterval中到期的callback。
-pending callback: 上一轮循环中少数的callback会放在这一阶段执行。
-idle, prepare: 仅在内部使用。
-poll: 最重要的阶段，执行pending callback，在适当的情况下回阻塞在这个阶段。
-check: 执行setImmediate(setImmediate()是将事件插入到事件队列尾部，主线程和事件队列的函数执行完成之后立即执行setImmediate指定的回调函数)的callback。
-close callbacks: 执行close事件的callback，例如socket.on('close'[,fn])或者http.server.on('close, fn)。
+- **`timers`**: 执行setTimeout和setInterval中到期的callback。
+- **`pending callback`**: 上一轮循环中少数的callback会放在这一阶段执行。
+- **`idle, prepare`**: 仅在内部使用。
+- **`poll`**: 最重要的阶段，执行pending callback，在适当的情况下回阻塞在这个阶段。
+- **`check`**: 执行setImmediate(setImmediate()是将事件插入到事件队列尾部，主线程和事件队列的函数执行完成之后立即执行setImmediate指定的回调函数)的callback。
+- **`close callbacks`**: 执行close事件的callback，例如socket.on('close'[,fn])或者http.server.on('close, fn)。
