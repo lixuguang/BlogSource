@@ -50,7 +50,7 @@ ip每位占1个字节8位，00000000 ~ 11111111，也就是0 ~ 255，ip共有四
 // 复制并重命名
 mv /etc/squid/squid.config{,.bak}
 // 删除文件中的注释和空行（只保留有效设定）
-awk 'if($0!~/^#/ && $0~!/^$/print $0)' /etc/squid/squid.config.bak > /etc/squid/squid.config
+awk 'if($0!~ /^#/ && $0~ !/^$/print $0)' /etc/squid/squid.config.bak > /etc/squid/squid.config
 
 squid常用命令：
 /usr/local/squid/sbin/squid -z 初始化缓存空间
