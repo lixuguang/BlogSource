@@ -1,3 +1,13 @@
+---
+title: Docker容器端口映射
+date: 2020-06-02 11:22:20
+categories: 
+  - Docker
+  - Infra
+tags: 
+  - 容器端口映射
+---
+
 # Docker容器端口映射
 常见容器服务需要做端口映射，这里以nginx为例进行举例
 

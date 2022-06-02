@@ -1,3 +1,13 @@
+---
+title: 搭建Docker私有仓库
+date: 2020-06-02 11:25:20
+categories: 
+  - Docker
+  - Infra
+tags: 
+  - 私有仓库
+---
+
 # 搭建Docker私有仓库
 
 利用registry搭建私有仓库

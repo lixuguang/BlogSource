@@ -1,3 +1,12 @@
+---
+title: Docker数据卷
+date: 2020-06-02 11:21:20
+categories: 
+  - Docker
+  - Infra
+tags: 
+  - 数据卷
+---
 # Docker数据卷
 宿主机与容器进行数据交互，共享宿主机与容器之间的数据
 
