@@ -4,6 +4,7 @@ date: 2022-06-01
 categories: 
   - Infra
   - Web服务器
+  - Squid
 tags: 
   - Squid
 ---
