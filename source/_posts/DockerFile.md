@@ -3,6 +3,7 @@ title: DockerFile
 date: 2022-06-02 11:20:20
 categories: 
   - Infra
+  - Docker
 tags: 
   - DockerFile
 ---
