@@ -3,6 +3,7 @@ title: Squid 服务器学习笔记
 date: 2022-06-01
 categories: 
   - Infra
+  - Web服务器
 tags: 
   - Squid
 ---
