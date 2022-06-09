@@ -2,7 +2,8 @@
 title: 给博客添加基于github-issue的评论系统
 date: 2017-10-12 10:50:21
 categories: 
-	- 前端技术
+	- 杂七杂八
+	- 博客技巧
 tags: 
 	- Hexo
 ---
