@@ -2,8 +2,8 @@
 title: 搭建Docker私有仓库
 date: 2022-06-02 11:25:20
 categories: 
-  - Docker
   - Infra
+  - Docker
 tags: 
   - 私有仓库
 ---
