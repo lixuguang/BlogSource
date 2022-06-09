@@ -3,6 +3,7 @@ title: Nginx指令
 date: 2022-06-09 10:40:40
 categories: 
   - Web服务器
+  - Nginx
 tags: 
   - Nginx
 ---
