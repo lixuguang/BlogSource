@@ -47,6 +47,9 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true #发布文章的附加资源路径
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 highlight:
