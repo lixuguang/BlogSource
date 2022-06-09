@@ -2,7 +2,6 @@
 title: Docker数据卷
 date: 2022-06-02 11:21:20
 categories: 
-  - Docker
   - Infra
 tags: 
   - 数据卷
