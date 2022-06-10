@@ -2,7 +2,7 @@
 title: http_stub_status_module Nginx的性能模块
 date: 2022-06-09 12:40:40
 categories: 
-  - [Web服务器, Nginx]
+  - [Infra, Web服务器, Nginx]
 tags: 
   - Nginx
 ---
