@@ -1,3 +1,16 @@
+---
+title: nginx中的超时设置
+date: 2022-06-30
+categories: 
+  - Infra
+  - Nginx
+tags: 
+  - Timeout
+---
+
+> 作者：李旭光
+> 引用请标明出处
+
 # nginx中的超时设置
 
 ## client_header_timeout  指定等待client发送一个请求头的超时时间
