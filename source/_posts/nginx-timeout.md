@@ -3,6 +3,7 @@ title: nginx中的超时设置
 date: 2022-06-30
 categories: 
   - Infra
+  - Web服务器
   - Nginx
 tags: 
   - Timeout
