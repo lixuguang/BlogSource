@@ -12,6 +12,14 @@ tags:
 > 引用请标明出处
 
 # nginx中的超时设置
+## proxy_connect_timeout 
+后端服务器连接的超时时间_发起握手等候响应超时时间
+
+## proxy_read_timeout
+连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理（也可以说是后端服务器处理请求的时间）
+
+## proxy_send_timeout 
+后端服务器数据回传时间_就是在规定时间之内后端服务器必须传完所有的数据
 
 ## client_header_timeout  指定等待client发送一个请求头的超时时间
 - 语法: client_header_timeout time
