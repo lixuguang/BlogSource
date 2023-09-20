@@ -32,5 +32,4 @@ hexo d
 // 打开ssh文件
 open ~/.ssh
 
-rebuild
 ```
