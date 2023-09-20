@@ -1012,5 +1012,5 @@ js: js
 images: images
 
 # 文章末尾添加“版权声明”标记
-my_copyright:
+my_copyright: 
   enabled: true
