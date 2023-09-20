@@ -1,6 +1,6 @@
 <!-- {% if theme.my_copyright.enabled %} -->
 <div class="my_post_copyright">
-<div style="text-align:center;color: #ccc;font-size:14px;">
+<div style="text-align:center;color:#ccc;font-size:14px;">
 ------ 版权声明 ------</div>
  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
  
