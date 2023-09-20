@@ -1,4 +1,3 @@
-<!-- {% if theme.my_copyright.enabled %} -->
 <div class="my_post_copyright">
    <div style="text-align:center;color:#ccc;font-size:14px;">
       ------ 版权声明 ------
@@ -31,4 +30,3 @@
       });  
    </script>
 </div>
-<!-- {% endif %} -->
