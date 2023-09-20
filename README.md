@@ -30,5 +30,7 @@ hexo g
 hexo d
 
 // 打开ssh文件
-open ~/.ssh  
+open ~/.ssh
+
+rebuild
 ```
